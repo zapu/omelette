@@ -1,4 +1,3 @@
-
 import sys
 
 from PyQt4.QtGui import *
@@ -30,8 +29,7 @@ class MainWindow(QMainWindow):
         
         self.setCentralWidget(widget)
     
-        
-        self.setWindowTitle("trololo czemu mi podkresla tekst na pomaranczowo?")
+        self.setWindowTitle("FROMAGE")
         
 
 if __name__ == "__main__":
@@ -39,8 +37,12 @@ if __name__ == "__main__":
     
     mainWindow = MainWindow()
     
-    mainWindow.diagram.addItem(DrawableClass("Test 1"))
-    mainWindow.diagram.addItem(DrawableClass("Test 2"))
+    classes = [DrawableClass("Test 1"), DrawableClass("Test 2")]
+    
+    for c in classes:
+        mainWindow.diagram.addItem(c)    
+    
+    #mainWindow.diagram.addItem(DrawableRelation(classes[0], classes[1]))
     
     mainWindow.show()
 
