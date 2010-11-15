@@ -14,7 +14,7 @@ class DrawableClass(QGraphicsItem):
         self.setFlag(QGraphicsItem.ItemIsSelectable, 1)
         self.setFlag(QGraphicsItem.ItemSendsGeometryChanges, 1)
         
-        self.relations = []
+        self.edges = []
                 
     def boundingRect(self):
         return QRectF(0, 0, 100, 100)
@@ -29,42 +29,40 @@ class DrawableClass(QGraphicsItem):
     def itemChange(self, change, value):
         if(change == QGraphicsItem.ItemPositionChange):
             newPos = value.toPointF()
+            self.updateEdges()
             #update arrows here etc
 
         return value
     
     def updateEdges(self):
-        for relation in self.relations:
-            relation.update()
+        for edge in self.edges:
+            edge.update()
             
     
     
-class DrawableRelation(QGraphicsItem):
-    #broken, will rewrite :(
-    
+class DrawableRelation(QGraphicsLineItem):
     def __init__(self, source, target):
-        QGraphicsItem.__init__(self)
+        QGraphicsLineItem.__init__(self)
         
         self.source = source
         self.target = target
         
-        for node in [self.source, self.target]:
-            if(not self in node.relations):
-                node.relations.append(self)
+        self.source.edges.append(self)
+        self.target.edges.append(self)
+        
+        if(self.target.name == "barnex"):
+            self.setPen(QPen(QColor(255, 0, 0), 1, Qt.DotLine, Qt.RoundCap, Qt.RoundJoin))
+        else:
+            self.setPen(QPen(QColor(255, 0, 0), 2, Qt.SolidLine, Qt.RoundCap, Qt.RoundJoin))
+            
+        self.update()
+        
+    def update(self):
+        self.setLine(QLineF(self.source.pos(), self.target.pos()))
+        pass
         
     def paint(self, painter, style, widget):
-        pen = QPen()
-        pen.setColor(QColor(255, 255, 255))
-        painter.setPen(pen)
-        painter.drawLine(self.source.pos(), self.target.pos())
+        QGraphicsLineItem.paint(self, painter, style, widget)
+        pass
     
-    def remove(self): 
-        for node in [self.source, self.target]:
-            if(not self in node.relations):
-                node.relations.remove(self)
-                
-    def update(self):
-        pass
-        
-    def boundingRect(self):
-        pass
+    

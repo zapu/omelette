@@ -3,7 +3,7 @@ import sys
 from PyQt4.QtGui import *
 from PyQt4.QtCore import QRectF, QPointF
 
-from omelette.fromage.modules.drawable import *
+from omelette.fromage.modules.researchDrawable import *
 
 import PyQt4
 
@@ -37,12 +37,13 @@ if __name__ == "__main__":
     
     mainWindow = MainWindow()
     
-    classes = [DrawableClass("Test 1"), DrawableClass("Test 2")]
+    classes = [DrawableClass("Test 1"), DrawableClass("Test 2"), DrawableClass("barnex")]
     
     for c in classes:
         mainWindow.diagram.addItem(c)    
     
-    #mainWindow.diagram.addItem(DrawableRelation(classes[0], classes[1]))
+    mainWindow.diagram.addItem(DrawableRelation(classes[0], classes[1]))
+    mainWindow.diagram.addItem(DrawableRelation(classes[0], classes[2]))
     
     mainWindow.show()
 
