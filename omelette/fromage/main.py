@@ -3,7 +3,8 @@ import sys
 from PyQt4.QtGui import *
 from PyQt4.QtCore import QRectF, QPointF
 
-from omelette.fromage.modules.researchDrawable import *
+from omelette.fromage.modules.classdiagram import *
+from omelette.parser.uml import *
 
 import PyQt4
 
@@ -37,13 +38,19 @@ if __name__ == "__main__":
     
     mainWindow = MainWindow()
     
-    classes = [DrawableClass("Test 1"), DrawableClass("Test 2"), DrawableClass("barnex")]
+    uml = UMLObject()
+    uml.__setitem__('name', 'barnex')
+    uml.add_attribute("# attr1")
+    uml.add_attribute("# dlugi attr2")
+    uml.add_operation("- jakas_operacja():string")
+    uml.add_operation("+ toString():int")
+    dc = DrawableClass(uml)
+    dc.updateSize()
     
-    for c in classes:
-        mainWindow.diagram.addItem(c)    
+    mainWindow.diagram.addItem(dc)
     
-    mainWindow.diagram.addItem(DrawableRelation(classes[0], classes[1]))
-    mainWindow.diagram.addItem(DrawableRelation(classes[0], classes[2]))
+    #mainWindow.diagram.addItem(DrawableRelation(classes[0], classes[1]))
+    #mainWindow.diagram.addItem(DrawableRelation(classes[0], classes[2]))
     
     mainWindow.show()
 
