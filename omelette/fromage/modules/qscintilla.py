@@ -2,7 +2,7 @@
 from PyQt4.Qsci import QsciLexerPython, QsciScintilla
 from PyQt4.QtGui import QColor, QFont, QFontMetrics
 from PyQt4.QtCore import QObject, SIGNAL
-from omelette.parser.parser import Parser
+#from omelette.parser.parser import Parser
 
 _sample = """
 #Sample Omelette source code with kvp
@@ -25,7 +25,7 @@ class QSci(QsciScintilla):
 
         self.line_nr = 0
         self.pos = 0
-        self.parser = Parser()
+        #self.parser = Parser()
 
         self.set_up()
 
@@ -100,4 +100,5 @@ class QSci(QsciScintilla):
         self.line_nr = line_nr + 1
 
     def get_updated_line(self):
-        self.parser.update(self.line_nr, self.text(self.line_nr-1))
+        pass
+        #self.parser.update(self.line_nr, self.text(self.line_nr-1))

@@ -25,6 +25,8 @@ class DrawableClass(DrawableNode, QGraphicsItem):
         metrics = QFontMetrics(self.__font)
         painter.setFont(self.__font)
         painter.setPen(QColor(0,0,0))
+        
+        painter.fillRect(QRectF(self.__boundingRect), QBrush(QColor(255,255,255), Qt.SolidPattern))
 
         currentHeight = self.__sectionMargin
         painter.drawText(QRect(self.__textMargin, currentHeight, metrics.width(self.__getitem__('name')), metrics.height()), 0, self.__getitem__('name'))

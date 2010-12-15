@@ -5,13 +5,9 @@ from PyQt4.QtCore import QRectF, QPointF
 
 from omelette.fromage.modules.classdiagram import *
 from omelette.parser.uml import *
+from omelette.fromage.modules.render import *
 
 import PyQt4
-
-class DiagramScene(QGraphicsScene):
-    def __init__(self, parent):
-        QGraphicsScene.__init__(self, parent)
-
 
 class MainWindow(QMainWindow):
     def __init__(self):
