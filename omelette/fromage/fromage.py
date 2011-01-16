@@ -1,5 +1,4 @@
 import sys
-sys.path.append('../../') 
 from PyQt4 import QtGui, QtCore
 from omelette.parser.parser import Parser
 from omelette.fromage.ui import Ui_MainWindow
@@ -54,10 +53,3 @@ class FromageForm(QtGui.QMainWindow, Ui_MainWindow):
             self.__x = 0
             self.__y += self.__highest_y + 20
             self.__highest_y = 0
-
-
-if __name__ == "__main__":
-    app = QtGui.QApplication(sys.argv)
-    form = FromageForm()
-    form.show()
-    sys.exit(app.exec_())
