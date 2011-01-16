@@ -43,6 +43,9 @@ if __name__ == "__main__":
     dc = DrawableClass(uml)
     dc.updateSize()
     
+    dr = DrawableRelation(uml)
+    dr.update()
+    
     mainWindow.diagram.addItem(dc)
     
     #mainWindow.diagram.addItem(DrawableRelation(classes[0], classes[1]))

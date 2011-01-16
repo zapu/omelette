@@ -68,5 +68,34 @@ class DrawableClass(DrawableNode, QGraphicsItem):
         
         self.__boundingRect = QRectF(0, 0, 2 * self.__textMargin +  drawableWidth, drawableHeight)
         
-        pass
+    def itemChange(self, change, value):
+        #if(change == QGraphicsItem.ItemPositionChange):
+            #newPos = value.toPointF()
+            #self.updateEdges()
+            #update arrows here etc
+
+        return value
+    
+class DrawableRelation(DrawableNode, QGraphicsLineItem):
+    def __init__(self, uml_object):
+        super(DrawableNode, self).__init__(uml_object)
+        QGraphicsLineItem.__init__(self)
+        
+        self.__boundingRect = QRectF(0,0,100,100)
+        self.__font = QFont('Comic Sans MS', 10)
+        
+    def boundingRect(self):
+        return self.__boundingRect
+    
+    def update(self):
+        polyExtra = 10
+        metrics = QFontMetrics(self.__font)
+        textHeight = metrics.height()
+        
+        roleWidth = max(map(metrics.width, ["a", "aa"]))
+        
+        #self.__boundingRect = QRectF(self.line().p1(), 
+        #              QSizeF(self.line().p2().x() - self.line().p1().x(),
+        #              self.line().p2().y() - self.line().p1().y())).normalized().adjusted(-extra, -extra, extra, extra);
+
         

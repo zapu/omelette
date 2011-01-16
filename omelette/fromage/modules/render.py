@@ -8,6 +8,7 @@ import random
 class DiagramScene(QGraphicsScene):
     def __init__(self, parent):        
         QGraphicsScene.__init__(self, parent)
+        self.demoimage = None
                 
     def demoStart(self):
         self.timer = QTimer(self)
@@ -40,4 +41,5 @@ class DiagramScene(QGraphicsScene):
         self.update()
     
     def drawForeground(self, painter, rect):
-        painter.drawImage(0, 0, self.demoimage)
+        if(self.demoimage != None):
+            painter.drawImage(0, 0, self.demoimage)
